@@ -1,11 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import {User as User_, UserDocument} from '../schemas/user.schema'
 // This should be a real class/interface representing a user entity
 export type User = any;
 
 @Injectable()
 export class UsersService {
+  constructor(@InjectModel(User_.name) private userModel: Model<UserDocument>) {}
+
   private readonly users = [
     {
       userId: 1,
@@ -22,8 +27,9 @@ export class UsersService {
   async findOne(username: string): Promise<User | undefined> {
     return this.users.find(user => user.username === username);
   }
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  create(createUserDto: CreateUserDto): Promise<User_> {
+    const createdCat = new this.userModel(createUserDto);
+    return createdCat.save();
   }
 
   findAll() {
