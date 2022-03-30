@@ -1,0 +1,11 @@
+docker tag 63971079bd59 nksherani/nestjs-api-dev:latest
+docker push nksherani/nestjs-api-dev
+
+docker images nksherani/*
+
+docker-compose build
+docker-compose push
+docker-compose up dev
+docker-compose up prod
+docker-compose stop
+docker-compose down
