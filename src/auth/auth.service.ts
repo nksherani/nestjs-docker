@@ -23,7 +23,7 @@ export class AuthService {
 
     async validateUsername(jwtTokenModel: JwtTokenModel): Promise<any> {
         const user = await this.usersService.findOne(jwtTokenModel.username);
-        if(user){
+        if (user) {
             const { passwordHash, salt, ...result } = user;
             return result;
         }
@@ -32,7 +32,7 @@ export class AuthService {
 
     async loginWithCredentials(user: any) {
         const payload = { username: user.username, sub: user.userId };
-
+        console.log(process.env.JWT_SECRET);
         return {
             access_token: this.jwtTokenService.sign(payload),
         };

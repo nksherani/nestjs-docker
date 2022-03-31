@@ -22,6 +22,6 @@ export class AppController {
   @UseGuards(JwtAuthGuard)
   @Get('test')
   async test() {
-    return 'test method completed';
+    return process.env;
   }
 }
