@@ -5,7 +5,6 @@ import { GetUserDto } from './dto/get-user.dto';
 import { Model, Document } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import {User, UserDocument} from '../schemas/user.schema'
-// import bcrypt from 'bcrypt'
 const bcrypt = require('bcrypt')
 
 // This should be a real class/interface representing a user entity
@@ -28,8 +27,11 @@ export class UsersService {
     },
   ];
 
-  async findOne(username: string): Promise<User__ | undefined> {
-    return this.users.find(user => user.username === username);
+  // async findOne(username: string): Promise<User__ | undefined> {
+  //   return this.users.find(user => user.username === username);
+  // }
+  async findOne(username: string): Promise<User & Document<any, any, any>> {
+    return this.userModel.findOne({username}).exec();
   }
   create(createUserDto: CreateUserDto): Promise<User & Document<any, any, any>> {
     return bcrypt.genSalt(3).then(salt =>{
