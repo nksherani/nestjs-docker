@@ -16,6 +16,21 @@ export class User {
 
     @Prop({ required: true })
     salt: string;
+
+    @Prop()
+    fullName: string;
+
+    @Prop({ required: true })
+    createdDate: Date;
+
+    @Prop()
+    createdBy: number;
+
+    @Prop()
+    updatedDate: Date;
+
+    @Prop()
+    updatedBy: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
