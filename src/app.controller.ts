@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
-
+import { LoginDto } from './login.dto';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService, private authService: AuthService) {}
@@ -15,7 +15,7 @@ export class AppController {
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  async login(@Body() payload) {
+  async login(@Body() payload: LoginDto) {
     return this.authService.loginWithCredentials(payload);
   }
 
