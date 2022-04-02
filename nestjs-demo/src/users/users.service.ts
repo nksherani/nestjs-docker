@@ -14,22 +14,6 @@ export type User__ = any;
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  private readonly users = [
-    {
-      userId: 1,
-      username: 'john',
-      password: 'changeme',
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-    },
-  ];
-
-  // async findOne(username: string): Promise<User__ | undefined> {
-  //   return this.users.find(user => user.username === username);
-  // }
   async findOne(email: string): Promise<User & Document<any, any, any>> {
     return this.userModel.findOne({email}).exec();
   }
