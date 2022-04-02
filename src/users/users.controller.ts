@@ -15,7 +15,6 @@ export class UsersController {
 
   @Get()
   findAll(@Headers() headers) {
-    console.log(headers);
     return this.usersService.findAll();
   }
 

@@ -9,8 +9,8 @@ const bcrypt = require('bcrypt')
 export class AuthService {
     constructor(private usersService: UsersService, private jwtTokenService: JwtService) { }
 
-    async validateUserCredentials(username: string, password: string): Promise<any> {
-        const user = await this.usersService.findOne(username);
+    async validateUserCredentials(email: string, password: string): Promise<any> {
+        const user = await this.usersService.findOne(email);
         if (!user)
             return null;
         const hash = await bcrypt.hash(password, user.salt);
@@ -22,7 +22,7 @@ export class AuthService {
     }
 
     async validateUsername(jwtTokenModel: JwtTokenModel): Promise<any> {
-        const user = await this.usersService.findOne(jwtTokenModel.username);
+        const user = await this.usersService.findOne(jwtTokenModel.email);
         if (user) {
             const { passwordHash, salt, ...result } = user;
             return result;
@@ -31,10 +31,10 @@ export class AuthService {
     }
 
     async loginWithCredentials(user: any) {
-        const payload = { username: user.username, sub: user.userId };
-        console.log(process.env.JWT_SECRET);
+        const payload = { username: user.username, email: user.email, sub: user._id };
+        console.log(payload);
         return {
-            access_token: this.jwtTokenService.sign(payload),
+            accessToken: this.jwtTokenService.sign(payload),
         };
     }
 }

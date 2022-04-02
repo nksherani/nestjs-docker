@@ -30,8 +30,8 @@ export class UsersService {
   // async findOne(username: string): Promise<User__ | undefined> {
   //   return this.users.find(user => user.username === username);
   // }
-  async findOne(username: string): Promise<User & Document<any, any, any>> {
-    return this.userModel.findOne({username}).exec();
+  async findOne(email: string): Promise<User & Document<any, any, any>> {
+    return this.userModel.findOne({email}).exec();
   }
   create(createUserDto: CreateUserDto): Promise<User & Document<any, any, any>> {
     return bcrypt.genSalt(3).then(salt =>{
@@ -41,7 +41,6 @@ export class UsersService {
         createdUser.salt = salt;
         createdUser.createdDate = new Date();
         return createdUser.save().then(createdResponse=>{
-          console.log(createdResponse);
           return createdResponse._id;
         });
         
