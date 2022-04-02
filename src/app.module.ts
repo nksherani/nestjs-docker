@@ -7,9 +7,10 @@ import { OrdersController } from './orders/orders.controller';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { RestaurantModule } from './restaurant/restaurant.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), UsersModule, ProductsModule, AuthModule, MongooseModule.forRoot(process.env.DB_HOST)],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), UsersModule, ProductsModule, AuthModule, MongooseModule.forRoot(process.env.DB_HOST), RestaurantModule],
   controllers: [AppController, OrdersController],
   providers: [AppService],
 })
