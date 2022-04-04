@@ -12,6 +12,9 @@ export class User {
     email: string;
 
     @Prop({ required: true })
+    role: string;
+
+    @Prop({ required: true })
     passwordHash: string;
 
     @Prop({ required: true })
