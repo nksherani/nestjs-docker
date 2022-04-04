@@ -7,6 +7,12 @@ export type UserDocument = User & Document;
 export class User {
     @Prop({ required: true })
     username: string;
+
+    @Prop()
+    firstName: string;
+
+    @Prop()
+    lastName: string;
     
     @Prop({ required: true })
     email: string;

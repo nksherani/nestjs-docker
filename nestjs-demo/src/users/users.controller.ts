@@ -4,11 +4,11 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Headers } from '@nestjs/common';
 
-@Controller('users')
+@Controller('api/account')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
+  @Post('createuser')
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }

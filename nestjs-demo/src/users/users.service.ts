@@ -32,6 +32,10 @@ export class UsersService {
         else{
           createdUser.role = 'admin'
         }
+        if(!createdUser.username)
+        {
+          createdUser.username = createUserDto.email.split('@')[0];
+        }
         createdUser.passwordHash = hash;
         createdUser.salt = salt;
         createdUser.createdDate = new Date();

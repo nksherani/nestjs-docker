@@ -81,17 +81,17 @@ export default function SignUp(props) {
   const OnSubmit = (e) => {
     e.preventDefault();
     const user = {
-      Username: email,
-      FirstName: firstName,
-      LastName: lastName,
-      Email: email,
-      Password: password,
-      ConfirmPassword: password
+      username: email,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      confirmPassword: password
     };
     var response = createUser(user)
       .then(x => {
         if (!x.error) {
-          getToken({ Username: user.Username, Password: user.Password })
+          getToken({ email: user.email, password: user.password })
             .then(response => {
               loginCallback(response);
             })
