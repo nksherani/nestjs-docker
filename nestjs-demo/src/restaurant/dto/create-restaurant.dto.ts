@@ -1,4 +1,4 @@
-export class CreateRestaurantDto {
+export class RestaurantDto {
     restaurantId: number;
     placeId: string;
     isActive: boolean;

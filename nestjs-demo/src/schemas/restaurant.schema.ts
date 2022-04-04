@@ -3,54 +3,6 @@ import { Document } from 'mongoose';
 
 export type RestaurantDocument = Restaurant & Document;
 
-@Schema()
-export class Restaurant {
-    @Prop()
-    restaurantId: number;
-    @Prop()
-    placeId: string;
-    @Prop()
-    isActive: boolean;
-    @Prop()
-    restaurantName: string;
-    @Prop()
-    address: string;
-    @Prop()
-    photos: Photo[];
-    @Prop()
-    latitude: number;
-    @Prop()
-    longitude: number;
-    @Prop()
-    phone: string;
-    @Prop()
-    international_phone: string;
-    @Prop()
-    iconUrl: string;
-    @Prop()
-    iconBackgroundColor: string;
-    @Prop()
-    iconMaskUrl: string;
-    @Prop()
-    priceLevel: number;
-    @Prop()
-    rating: number;
-    @Prop()
-    reviews: Review[];
-    @Prop()
-    types: string;
-    @Prop()
-    googleUrl: string;
-    @Prop()
-    userRatingsCount: number;
-    @Prop()
-    utcOffset: number;
-    @Prop()
-    website: string;
-    @Prop()
-    timings: Timings;
-
-}
 class Photo {
     photoId: number;
     url: string;
@@ -100,6 +52,55 @@ class Timings {
     sundayOpeningMinutes: number;
     sundayClosingHours: number;
     sundayClosingMinutes: number;
+}
+
+@Schema()
+export class Restaurant {
+    @Prop()
+    restaurantId: number;
+    @Prop()
+    placeId: string;
+    @Prop()
+    isActive: boolean;
+    @Prop()
+    restaurantName: string;
+    @Prop()
+    address: string;
+    @Prop()
+    photos: Photo[];
+    @Prop()
+    latitude: number;
+    @Prop()
+    longitude: number;
+    @Prop()
+    phone: string;
+    @Prop()
+    international_phone: string;
+    @Prop()
+    iconUrl: string;
+    @Prop()
+    iconBackgroundColor: string;
+    @Prop()
+    iconMaskUrl: string;
+    @Prop()
+    priceLevel: number;
+    @Prop()
+    rating: number;
+    @Prop()
+    reviews: Review[];
+    @Prop()
+    types: string;
+    @Prop()
+    googleUrl: string;
+    @Prop()
+    userRatingsCount: number;
+    @Prop()
+    utcOffset: number;
+    @Prop()
+    website: string;
+    @Prop()
+    timings: Timings;
+
 }
 
 export const RestaurantSchema = SchemaFactory.createForClass(Restaurant);
